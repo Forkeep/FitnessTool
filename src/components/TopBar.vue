@@ -1,10 +1,10 @@
 <template>
-  <div class="wrapper">
-    <Icon class="icon" name="退出"/>
+  <div class="top-bar">
+    <icon name="取消" class="cancel icon" />
     <div class="item-name">
       <slot>--页面内容名称--</slot>
     </div>
-    <button class="success">完成</button>
+    <icon name="确认" class="affirm icon" />
   </div>
 </template>
 
@@ -16,7 +16,7 @@
 
 <style lang="scss" scoped>
   @import "~@/assets/style/helper.scss";
-  .wrapper {
+  .top-bar {
     @extend %outerShadow;
     background-color: $color-theme;
     padding: 0 10px;
@@ -25,25 +25,14 @@
     align-items: center;
     flex-direction: row;
     height: 80px;
-
     .icon {
-      width: 1.2em;
-      height: 1.2em;
-      margin-right: 15px;
+      width: 1.5em;
+      height: 1.5em;
     }
-    .item-name{
+    .item-name {
       font-size: 24px;
       text-align: center;
 
     }
-
-    .success {
-      border: none;
-      color: inherit;
-      font-size: 18px;
-      background-color: inherit;
-      font-family: inherit;
-    }
-
   }
 </style>

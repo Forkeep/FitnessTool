@@ -7,12 +7,14 @@ import Icon from '@/components/Icon.vue';
 import Nav from '@/components/Nav.vue';
 import Layout from '@/components/Layout.vue';
 import TopBar from '@/components/TopBar.vue';
+import LayoutTop from '@/components/LayoutTop.vue';
 
 Vue.config.productionTip = false;
 Vue.component('Icon',Icon);
 Vue.component('Nav',Nav);
 Vue.component('Layout',Layout);
 Vue.component('TopBar',TopBar);
+Vue.component('LayoutTop',LayoutTop);
 new Vue({
   router:router,
   store:store,
