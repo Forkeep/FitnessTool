@@ -1,17 +1,17 @@
 <template>
   <Layout class="wrapper">
     <div class="type">
-      <div class="unarmed">徒手</div>
-      <div class="instrument">器械</div>
+      <div :class="this.type==='unarmed' && 'selected' " @click="selectType('unarmed')">徒手</div>
+      <div :class="this.type==='instrument' && 'selected'" @click="selectType('instrument')">器械</div>
     </div>
     <ul class="body-parts">
-      <li>胸</li>
-      <li>背</li>
-      <li>腿</li>
-      <li>肩</li>
-      <li>手臂</li>
-      <li>腹肌</li>
-      <li>有氧</li>
+      <li :class="this.parts === 'chest' && 'selected'" @click="selectPart('chest')">胸</li>
+      <li :class="this.parts === 'back' && 'selected'" @click="selectPart('back')">背</li>
+      <li :class="this.parts === 'leg' && 'selected'" @click="selectPart('leg')">腿</li>
+      <li :class="this.parts === 'shoulder' && 'selected'" @click="selectPart('shoulder')">肩</li>
+      <li :class="this.parts === 'arm' && 'selected'" @click="selectPart('arm')">手臂</li>
+      <li :class="this.parts === 'abdominal' && 'selected'" @click="selectPart('abdominal')">腹肌</li>
+      <li :class="this.parts === 'aerobic' && 'selected'" @click="selectPart('aerobic')">有氧</li>
     </ul>
     <ul class="practice-items">
       <li><span>平板卧推</span>
@@ -34,9 +34,34 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: 'Training',
-  };
+  import Vue from 'vue';
+  import {Component} from 'vue-property-decorator';
+
+  @Component
+  export default class Training extends Vue {
+    type = 'unarmed';
+    parts = 'chest';
+    allParts = ['chest', 'back', 'leg', 'shoulder', 'arm', 'abdominal', 'aerobic'];
+
+    selectType(type: string) {
+      console.log('click');
+      if (type !== 'unarmed' && type !== 'instrument') {
+        throw new Error('没有此类型');
+      }
+      this.type = type;
+    }
+
+    selectPart(parts: string) {
+      for (let i = 0; i < this.allParts.length; i++) {
+        if (this.allParts[i] === parts) {
+          this.parts = parts;
+          break;
+        }
+      }
+
+    }
+  }
+
 </script>
 
 <style lang="scss" scoped>
@@ -50,33 +75,29 @@
     align-items: center;
     height: 80px;
 
-    .unarmed {
+    > div {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 50%;
-      background-color: $color-theme;
       height: 100%;
     }
 
-    .instrument {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 50%;
-      height: 100%;
+    .selected {
+      background-color: $color-theme;
     }
 
 
   }
 
   .body-parts {
-    margin-top: 20px;
+    border: 1px solid red ;
+    padding-top: 20px;
     display: flex;
     justify-content: space-around;
     align-items: center;
 
-    >li {
+    > li {
       @extend %outerShadow;
       width: 10%;
       display: flex;
@@ -85,14 +106,18 @@
       border-radius: 50%;
       background-color: #EEE;
     }
+
+    .selected {
+      background-color: $color-theme;
+    }
   }
   .practice-items{
+    border: 1px solid blue;
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: start;
-    padding: 0 10px;
-    margin-top: 30px;
+    padding: 30px 10px 0 10px;
     >li{
       @extend %outerShadow;
       width: 100%;
