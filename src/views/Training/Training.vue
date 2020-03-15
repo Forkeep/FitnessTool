@@ -28,7 +28,146 @@
       <li><span>龙门架假胸</span>
         <icon name="进入"/>
       </li>
+      <li><span>平板卧推</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>上斜卧推</span>
+        <icon name="进入"/>
 
+      </li>
+      <li><span>下斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>龙门架假胸</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>平板卧推</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>上斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>下斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>龙门架假胸</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>平板卧推</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>上斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>下斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>龙门架假胸</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>平板卧推</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>上斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>下斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>龙门架假胸</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>下斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>龙门架假胸</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>平板卧推</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>上斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>下斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>龙门架假胸</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>下斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>龙门架假胸</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>平板卧推</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>上斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>下斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>龙门架假胸</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>下斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>龙门架假胸</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>平板卧推</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>上斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>下斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>龙门架假胸</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>下斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>龙门架假胸</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>平板卧推</span>
+        <icon name="进入"/>
+      </li>
+      <li><span>上斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>下斜卧推</span>
+        <icon name="进入"/>
+
+      </li>
+      <li><span>龙门架假胸</span>
+        <icon name="进入"/>
+      </li>
     </ul>
   </Layout>
 </template>
@@ -73,7 +212,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    height: 80px;
+    min-height: 80px;
 
     > div {
       display: flex;
@@ -91,8 +230,9 @@
   }
 
   .body-parts {
-    border: 1px solid red ;
+    @extend %outerShadow;
     padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -112,15 +252,17 @@
     }
   }
   .practice-items{
-    border: 1px solid blue;
+    flex-grow: 1;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: start;
-    padding: 30px 10px 0 10px;
+    padding: 0 10px 0 10px;
     >li{
       @extend %outerShadow;
       width: 100%;
+      min-height: 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
