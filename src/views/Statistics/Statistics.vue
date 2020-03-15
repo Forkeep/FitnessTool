@@ -1,6 +1,12 @@
 <template>
   <Layout>
-    统计
+    <div class="topBar">
+      <span>基本信息</span>
+    </div>
+    <div class="health-card">
+
+    </div>
+
   </Layout>
 </template>
 
