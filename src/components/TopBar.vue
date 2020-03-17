@@ -4,7 +4,9 @@
     <div class="item-name">
       <slot>--页面内容名称--</slot>
     </div>
-    <icon name="确认" class="affirm icon" />
+    <router-link to="/training">
+      <icon name="确认" class="affirm icon" />
+    </router-link>
   </div>
 </template>
 

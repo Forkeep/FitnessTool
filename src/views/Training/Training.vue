@@ -14,9 +14,11 @@
       <li :class="this.parts === 'aerobic' && 'selected'" @click="selectPart('aerobic')">有氧</li>
     </ul>
     <ul class="practice-items">
-      <li><span>平板卧推</span>
-        <icon name="进入"/>
-      </li>
+      <router-link to="/dotraining">
+        <li><span>平板卧推</span>
+          <icon name="进入"/>
+        </li>
+      </router-link>
       <li><span>上斜卧推</span>
         <icon name="进入"/>
 

@@ -12,26 +12,60 @@
         <span>{{this.times}}</span>
       </div>
     </div>
-    <div class="start-btn">
-      <span>开始</span>
+    <div class="start-btn" :class="this.status==='完成' && 'doing'" @click="start">
+      <span>{{this.status}}</span>
     </div>
     <div class="time-show">{{time}}</div>
   </LayoutTop>
 </template>
 
 <script lang="ts">
-  export default {
-    name: 'DoTraining',
-    data() {
-      return {
-        group: 0,
-        weight: 0,
-        times: 0,
-        time:'00:00'
+  import Vue from 'vue';
+  import {Component, Watch} from 'vue-property-decorator';
 
-      };
+  @Component
+  export default class DoTraining extends Vue {
+    group = 0;
+    weight = 0;
+    times = 0;
+    status = '开始';
+    time = '00:00';
+    flag = false;
+    begin: Date | undefined;
+    end: Date | undefined;
+    toggleBtnTime: Date | undefined;
+
+    beforeDestroy() {
+      this.end = new Date();
+      if (this.begin) {
+        const sustain = ((this.end.valueOf() - this.begin.valueOf()) / 60000).toFixed(2);
+        console.log(sustain);
+      }
     }
-  };
+
+    @Watch('group', {immediate: true})
+    onGroupChange() {
+      return;
+    }
+
+    start() {
+      if (!this.begin) {
+        this.begin = new Date();
+        console.log(`开始训练了${this.begin}`);
+        this.status = '完成';
+      }
+      if (this.flag) {
+        this.flag = !this.flag;
+        this.group += 1;
+        this.status = '开始';
+      } else {
+        this.flag = !this.flag;
+        this.status = '完成';
+      }
+
+
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -52,7 +86,6 @@
   }
 
   .start-btn {
-    background-color: $color-theme;
     margin-top: 20vh;
     border-radius: 50%;
     @extend %outerShadow;
@@ -62,8 +95,19 @@
     align-items: center;
     justify-content: center;
     font-size: 30px;
+    transition: all 1s;
+    color: black;
+    background-color: lighten($color-gray, 30%);
   }
-  .time-show{
+
+  .start-btn.doing {
+    background-color: $color-theme;
+    color: white;
+    @extend %outerShadow;
+    @extend %innerShadow;
+  }
+
+  .time-show {
     padding-top: 30px;
 
   }
