@@ -7,8 +7,6 @@
       <label>
         <input type="month" :value="this.date">
       </label>
-      <!--      {{date}}-->
-      <!--      <button @click="getToday()">获得日期{{this.date}}</button>-->
     </div>
     <div class="cost">消耗
       <span>10000kCal</span>
@@ -35,26 +33,29 @@
 </template>
 
 <script lang="ts">
-  export default {
-    name: 'Record',
-    data() {
-      return {
-        date: '2020-03'
-      };
-    },
-    mounted() {
-      console.log('加载完毕');
-    },
-    methods: {
-      getToday() {
-        const today = new Date();
-        const month: string = today.getMonth() > 10 ? (today.getMonth() + 1).toString() : '0' + (today.getMonth() + 1).toString();
-        const year: string = today.getFullYear().toString();
-        const date: string = year + '-' + month;
-        console.log(date);
-      }
+  import Vue from 'vue';
+  import {Component} from 'vue-property-decorator';
+
+
+  @Component
+  export default class Record extends Vue {
+    date = '';
+
+    getToday(): void {
+      const today = new Date();
+      const month = today.getMonth() > 10 ? (today.getMonth() + 1).toString() : '0' + (today.getMonth() + 1).toString();
+      const year = today.getFullYear().toString();
+      const date = year + '-' + month;
+      console.log(date);
+      this.date = date;
     }
-  };
+    mounted(){
+      this.getToday()
+    }
+
+
+  }
+
 </script>
 
 <style lang="scss" scoped>
