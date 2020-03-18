@@ -12,10 +12,10 @@
         <span>{{this.times}}</span>
       </div>
     </div>
-    <div class="start-btn" :class="this.status==='完成' && 'doing'" @click="start">
-      <span>{{this.status}}</span>
+    <div class="start-btn" :class="this.status==='训练中' && 'doing'" @click="start">
+      <span>{{this.time}}</span>
     </div>
-    <div class="time-show">{{time}}</div>
+    <div class="time-show">{{this.status}}</div>
   </LayoutTop>
 </template>
 
@@ -28,8 +28,8 @@
     group = 0;
     weight = 0;
     times = 0;
-    status = '开始';
-    time = '00:00';
+    status = '休息中';
+    time = 0;
     flag = false;
     begin: Date | undefined;
     end: Date | undefined;
@@ -43,28 +43,57 @@
       }
     }
 
+    destroyed() {
+      clearTimeout(this.restTimer());
+    }
+
     @Watch('group', {immediate: true})
     onGroupChange() {
       return;
     }
 
+    @Watch('time', {immediate: false})
+    onTimeChange() {
+      this.restTimer();
+      if (this.time <= 0) {
+        alert('别休息了');
+        clearTimeout(this.restTimer());
+        return;
+      }
+    }
+
     start() {
       if (!this.begin) {
+        //刚进入页面第一次按下
         this.begin = new Date();
         console.log(`开始训练了${this.begin}`);
-        this.status = '完成';
+        this.status = '训练中..';
       }
-      if (this.flag) {
+      if (this.flag) {//休息->锻炼
+        this.time = 10;
         this.flag = !this.flag;
         this.group += 1;
-        this.status = '开始';
-      } else {
-        this.flag = !this.flag;
-        this.status = '完成';
-      }
+        this.status = '休息中';
 
+      } else {//锻炼->休息
+        this.time = 20;
+        this.flag = !this.flag;
+        this.status = '训练中';
+      }
+      // if (this.flag) {
+      //   console.log('清空计时器');
+      // } else {
+      //   this.restTimer();
+      // }
 
     }
+
+    restTimer() {
+      return setTimeout(() => {
+        this.time -= 1;
+      },1000);
+    }
+
   }
 </script>
 
@@ -95,14 +124,13 @@
     align-items: center;
     justify-content: center;
     font-size: 30px;
-    transition: all 1s;
+    transition: all 0.5s;
     color: black;
     background-color: lighten($color-gray, 30%);
   }
 
   .start-btn.doing {
     background-color: $color-theme;
-    color: white;
     @extend %outerShadow;
     @extend %innerShadow;
   }

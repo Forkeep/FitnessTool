@@ -17,17 +17,8 @@
 
   </div>
 </div>
-    <div class="content">
-      <div>
-        <div>
-          <span>昨天 星期五</span>
-          <span>消耗3000kcal</span>
-        </div>
-        <hr>
-        <div>
-          <span>动作名称</span>
-        </div>
-      </div>
+    <div>
+      <DayRecord cost-energy="1000" :datetime="testDate"></DayRecord>
     </div>
   </Layout>
 </template>
@@ -35,12 +26,14 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
+  import DayRecord from '@/components/Record/DayRecord.vue';
 
-
-  @Component
+  @Component({
+    components: {DayRecord}
+  })
   export default class Record extends Vue {
     date = '';
-
+    testDate = new Date();
     getToday(): void {
       const today = new Date();
       const month = today.getMonth() > 10 ? (today.getMonth() + 1).toString() : '0' + (today.getMonth() + 1).toString();

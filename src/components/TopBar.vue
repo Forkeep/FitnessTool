@@ -1,11 +1,13 @@
 <template>
   <div class="top-bar">
-    <icon name="取消" class="cancel icon" />
+    <router-link to="" @click="$router.back(-1)">
+      <icon name="取消" class="cancel icon" @click="$router.back(-1)"/>
+    </router-link>
     <div class="item-name">
       <slot>--页面内容名称--</slot>
     </div>
-    <router-link to="/training">
-      <icon name="确认" class="affirm icon" />
+    <router-link to="">
+      <icon name="确认" class="affirm icon" @click="$router.back(-1)"/>
     </router-link>
   </div>
 </template>
